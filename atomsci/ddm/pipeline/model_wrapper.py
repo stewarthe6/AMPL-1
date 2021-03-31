@@ -806,7 +806,8 @@ class DCNNModelWrapper(ModelWrapper):
                     bucket = self.params.transformer_bucket,
                     client = self.ds_client )
             else:
-                self.transformers, self.transformers_x = pickle.load(open( self.params.transformer_key, 'rb' ))
+                with open(self.params.transformer_key, 'rb') as f:
+                    self.transformers, self.transformers_x = pickle.load(f)
 
 
     # ****************************************************************************************
@@ -1149,7 +1150,8 @@ class DCRFModelWrapper(ModelWrapper):
                                bucket = self.params.transformer_bucket,
                                client= self.ds_client )
             else:
-                self.transformers, self.transformers_x = pickle.load(open( self.params.transformer_key, 'rb' ))
+                with open(self.params.transformer_key, 'rb') as f:
+                    self.transformers, self.transformers_x = pickle.load(f)
         self.model = dc.models.sklearn_models.SklearnModel(rf_model, model_dir=reload_dir)
         self.model.reload()
 
@@ -1516,8 +1518,8 @@ class DCxgboostModelWrapper(ModelWrapper):
                     bucket=self.params.transformer_bucket,
                     client=self.ds_client)
             else:
-                self.transformers, self.transformers_x = pickle.load(open(self.params.transformer_key, 'rb'))
-
+                with open(self.params.transformer_key, 'rb') as f:
+                    self.transformers, self.transformers_x = pickle.load(f)
         self.model = dc.models.xgboost_models.XGBoostModel(xgb_model, model_dir=self.best_model_dir)
         self.model.reload()
 

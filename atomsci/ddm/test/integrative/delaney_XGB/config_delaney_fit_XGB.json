@@ -25,8 +25,6 @@
     "comment": "Model",
     "comment": "----------------------------------------",
     "model_type": "xgboost",
-    "comment": "Uncertainty is not supported by xgboost",
-    "uncertainty": "False",
 
     "comment": "Results",
     "comment": "----------------------------------------",    
